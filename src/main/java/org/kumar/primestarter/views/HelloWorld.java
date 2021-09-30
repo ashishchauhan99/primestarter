@@ -2,9 +2,13 @@ package org.kumar.primestarter.views;
 
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 @Named
+@RequestScoped
 public class HelloWorld {
 
     private String firstName = "John";
@@ -38,4 +42,12 @@ public class HelloWorld {
     public String showGreeting() {
         return "Hello " + firstName + " " + lastName + "!";
     }
+
+    public String logout() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance();
+        System.out.println(request.getContextPath());
+        return "login.xhtml";
+
+    }
+
 }
