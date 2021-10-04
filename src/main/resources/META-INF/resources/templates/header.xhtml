@@ -59,19 +59,20 @@
                     <p:menuitem value="Quit" icon="pi pi-fw pi-power-off" />
 
                     <f:facet name="options">
+ 
                         <div class="ui-input-icon-left p-mr-2">
                             <i class="pi pi-fw pi-search" />
                             <p:inputText placeholder="Search" />
                         </div>
+                        <p:menubar>
+                            <p:submenu label="" icon="pi pi-fw pi-bars">
+                                <p:menuitem value="My Profile" url="http://www.primefaces.org"
+                                    icon="pi pi-external-link" />
+                                <p:menuitem value="Logout" url="/logout" icon="pi pi-vars" />
+                            </p:submenu>
+                        </p:menubar>
+     </f:facet>
 
-                        <p:commandButton style="" id="dynaButton" value="Settings" type="button"
-                            icon="pi pi-shopping-cart" />
-                        <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
-                            <p:menuitem value="My Profile" url="http://www.primefaces.org" icon="pi pi-external-link" />
-                            <p:menuitem value="Logout" url="/logout" icon="pi pi-external-link" />
-                        </p:menu>
-
-                    </f:facet>
 
                 </p:menubar>
             </h:form>
