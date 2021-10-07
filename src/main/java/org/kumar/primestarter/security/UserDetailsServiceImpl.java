@@ -12,13 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private ApplicationContext context;
     private UserRepository userRepository;
 
     @Autowired
     public UserDetailsServiceImpl(UserRepository userRepository, ApplicationContext contex) {
         this.userRepository = userRepository;
-        context = contex;
     }
 
     @Override
