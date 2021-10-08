@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,12 +32,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("ashish").password("{noop}pw").roles("USER").and().withUser("kumar")
-                .password("{noop}pw").roles("ADMIN");
-
-    }
+    /**
+     * In Memory and Database authentiation do not work together. Either you need to provide AuthenticationProvider or
+     * use the auth.inMemoryAuthentication() (in commented out below method)
+     * 
+     * @return
+     */
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication().withUser("ashish").password("{noop}pw").roles("USER").and().withUser("kumar")
+//                .password("{noop}pw").roles("ADMIN");
+//
+//    }
 
     @Bean
     public AuthenticationProvider daoAuthenticationProvider() {

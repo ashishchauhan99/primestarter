@@ -1,10 +1,10 @@
 package org.kumar.primestarter.repository;
 
-import org.kumar.primestarter.entity.User;
+import org.kumar.primestarter.entity.PrimeUser;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<PrimeUser, Integer> {
 
-    User findByUsername(String username);
+    PrimeUser findByUsername(String username);
 
 }
