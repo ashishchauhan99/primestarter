@@ -26,16 +26,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/javax.faces.resource/**").permitAll()
-                .anyRequest().authenticated().and().formLogin().loginPage("/login.xhtml").permitAll()
-                .failureUrl("/login.xhtml?error=true").defaultSuccessUrl("/dashboard.xhtml", true).and().logout()
-                .logoutSuccessUrl("/login.xhtml").deleteCookies("JSESSIONID");
+                .antMatchers("/registration.xhtml").permitAll().anyRequest().authenticated().and().formLogin()
+                .loginPage("/login.xhtml").permitAll().failureUrl("/login.xhtml?error=true")
+                .defaultSuccessUrl("/dashboard.xhtml", true).and().logout().logoutSuccessUrl("/login.xhtml")
+                .deleteCookies("JSESSIONID");
 
     }
 
     /**
      * In Memory and Database authentiation do not work together. Either you need to provide AuthenticationProvider or
      * use the auth.inMemoryAuthentication() (in commented out below method)
-     * 
+     *
      * @return
      */
 //    @Autowired

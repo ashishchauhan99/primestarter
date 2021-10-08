@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xml:lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+    <title>PrimeStarter Registration</title>
+</h:head>
+
+<h:body>
+    <h:form id="registrationForm">
+      <p:messages id="messages" closable="true">
+            <p:autoUpdate/>
+        </p:messages>
+        
+         <h2>Registration</h2>
+            <h:panelGrid columns="2" cellpadding="7">
+                <h:outputText value="Username: " />
+                <p:inputText id="username" value="#{registration.primeUser.username}" />
+
+                <h:outputText value="First Name: " />
+                <p:inputText id="firstName" value="#{registration.primeUser.firstName}" />
+
+                <h:outputText value="Last Name: " />
+                <p:inputText id="lastName" required="true" value="#{registration.primeUser.lastName}" />
+                
+                <h:outputLabel value="Date of birth: " />
+                <p:datePicker id="basic" value="#{registration.primeUser.dateOfBirth}" />
+
+                <p:commandButton id="submit" value="Save" action="#{registration.savePrimeUser}"/>
+            </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
