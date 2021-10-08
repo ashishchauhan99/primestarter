@@ -1,7 +1,7 @@
 package org.kumar.primestarter.security;
 
 import org.kumar.primestarter.entity.PrimeUser;
-import org.kumar.primestarter.repository.UserRepository;
+import org.kumar.primestarter.repository.PrimeUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private PrimeUserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository, ApplicationContext contex) {
+    public UserDetailsServiceImpl(PrimeUserRepository userRepository, ApplicationContext contex) {
         this.userRepository = userRepository;
     }
 
