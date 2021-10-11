@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xml:lang="en" 
-      xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
     <title>PrimeStarter Registration</title>
 </h:head>
 
 <h:body>
-    <h:form id="registrationForm">
-      <p:messages id="messages" closable="true">
-            <p:autoUpdate/>
-        </p:messages>
-        
-         <h2>Registration</h2>
-            <h:panelGrid columns="2" cellpadding="7">
-                <h:outputText value="Username: " />
-                <p:inputText id="username" value="#{registration.primeUser.username}" />
+    <div class="card">
+        <h:form id="registrationForm">
+            <p:messages id="messages" closable="true">
+                <p:autoUpdate />
+            </p:messages>
 
-                <h:outputText value="First Name: " />
-                <p:inputText id="firstName" value="#{registration.primeUser.firstName}" />
+            <h2>Registration</h2>
+            <h:panelGrid id="grid" columns="3" cellpadding="7">
+                <p:outputLabel value="Username: " for="username" />
+                <p:inputText id="username" value="#{registration.primeUser.username}" required="true" />
+                <p:message for="username" closable="true"></p:message>
 
-                <h:outputText value="Last Name: " />
-                <p:inputText id="lastName" required="true" value="#{registration.primeUser.lastName}" />
+                <p:outputLabel value="Password " for="idPassword" />
+                <p:password id="idPassword" value="#{registration.password}" toggleMask="true" redisplay="true"
+                    feedback="true" inline="true" required="true" />
+                <p:message for="idPassword" closable="true"></p:message>
                 
-                <h:outputLabel value="Date of birth: " />
-                <p:datePicker id="basic" value="#{registration.primeUser.dateOfBirth}" />
+                <p:outputLabel value="Repeat password " for="idRepeatePassword" />
+                <p:password id="idRepeatePassword" value="#{registration.passwordRepeat}" toggleMask="true"
+                    redisplay="true" feedback="true" inline="true" required="true" />
+                <p:message for="idRepeatePassword" closable="true"></p:message>
 
-                <p:commandButton id="submit" value="Save" action="#{registration.savePrimeUser}"/>
+                <p:outputLabel value="First name " for="firstName" />
+                <p:inputText id="firstName" value="#{registration.primeUser.firstName}" />
+                <p:message for="firstName" closable="true"></p:message>
+                
+                
+                <p:outputLabel value="Last name " for="lastName" />
+                <p:inputText id="lastName" required="true" value="#{registration.primeUser.lastName}" />
+                <p:message for="lastName" closable="true"></p:message>  
+                
+                <p:outputLabel value="Date of birth " for="dateOfBirth" />
+                <p:datePicker id="dateOfBirth" value="#{registration.primeUser.dateOfBirth}" />
+                
+                <br />
+                <p:commandButton id="submit" value="Save" action="#{registration.savePrimeUser}" update="grid" />
             </h:panelGrid>
-    </h:form>
+        </h:form>
+    </div>
 </h:body>
 </html>
