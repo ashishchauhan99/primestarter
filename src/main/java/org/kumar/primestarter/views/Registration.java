@@ -2,19 +2,22 @@ package org.kumar.primestarter.views;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.kumar.primestarter.entity.PrimeUser;
+import org.kumar.primestarter.misc.Utility;
 import org.kumar.primestarter.repository.PrimeUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.annotation.RequestScope;
 
 @Named
-@RequestScope
+@ViewScoped
 public class Registration {
 
     @Autowired
     private PrimeUserRepository primeUserRepository;
+    @Autowired
+    private Utility utility;
 
     private PrimeUser primeUser = new PrimeUser();
     private String password;
@@ -44,14 +47,35 @@ public class Registration {
         this.primeUser = primeUser;
     }
 
-    public void savePrimeUser() {
-//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("user saved"));
-        if (primeUser.getUsername().length() < 2) {
+    public void passwordSetListner() {
+        // empty by intention, ajax listner so the the password value can be summitted to the server
+    }
+
+    public void usernameAvailabilityCheckListner() {
+        PrimeUser primeUserByUsername = primeUserRepository.findByUsername(primeUser.getUsername());
+        if (primeUserByUsername != null) {
             FacesContext.getCurrentInstance().addMessage("registrationForm:username", new FacesMessage(
                     FacesMessage.SEVERITY_ERROR, "Username: Validation Error: user name exists", null));
         }
-//        primeUserRepository.save(primeUser);
+    }
 
+    public void passwordMatchCheckListner() {
+        if (password != null && !password.equals(passwordRepeat)) {
+            FacesContext.getCurrentInstance().addMessage("registrationForm:idRepeatePassword", new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Password Repeat: Validation Error: passwords do not match", null));
+        }
+    }
+
+    public void savePrimeUser() {
+        PrimeUser primeUserByUsername = primeUserRepository.findByUsername(primeUser.getUsername());
+        if (primeUserByUsername != null) {
+            FacesContext.getCurrentInstance().addMessage("registrationForm:username", new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Username: Validation Error: user name exists", null));
+        } else {
+            primeUser.setPassword(utility.bCryptPasswordEncoder(password));
+            primeUserRepository.save(primeUser);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("user registerd successfully"));
+        }
     }
 
 }

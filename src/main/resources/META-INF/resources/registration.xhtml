@@ -10,6 +10,8 @@
 </h:head>
 
 <h:body>
+    <p:link outcome="login" value="Login" />
+
     <div class="card">
         <h:form id="registrationForm">
             <p:messages id="messages" closable="true">
@@ -17,36 +19,53 @@
             </p:messages>
 
             <h2>Registration</h2>
+
             <h:panelGrid id="grid" columns="3" cellpadding="7">
                 <p:outputLabel value="Username: " for="username" />
-                <p:inputText id="username" value="#{registration.primeUser.username}" required="true" />
+                <p:inputText id="username" value="#{registration.primeUser.username}" required="true">
+                    <p:ajax listener="#{registration.usernameAvailabilityCheckListner()}" update="grid" />
+                </p:inputText>
+
                 <p:message for="username" closable="true"></p:message>
 
                 <p:outputLabel value="Password " for="idPassword" />
                 <p:password id="idPassword" value="#{registration.password}" toggleMask="true" redisplay="true"
-                    feedback="true" inline="true" required="true" />
+                    feedback="true" inline="true" required="true">
+                    <p:ajax listener="#{registration.passwordSetListner()}" />
+                </p:password>
                 <p:message for="idPassword" closable="true"></p:message>
-                
+
                 <p:outputLabel value="Repeat password " for="idRepeatePassword" />
                 <p:password id="idRepeatePassword" value="#{registration.passwordRepeat}" toggleMask="true"
-                    redisplay="true" feedback="true" inline="true" required="true" />
+                    redisplay="true" feedback="true" inline="true" required="true">
+                    <p:ajax listener="#{registration.passwordMatchCheckListner()}" update="grid" />
+                </p:password>
                 <p:message for="idRepeatePassword" closable="true"></p:message>
 
                 <p:outputLabel value="First name " for="firstName" />
                 <p:inputText id="firstName" value="#{registration.primeUser.firstName}" />
                 <p:message for="firstName" closable="true"></p:message>
-                
-                
+
+
                 <p:outputLabel value="Last name " for="lastName" />
                 <p:inputText id="lastName" required="true" value="#{registration.primeUser.lastName}" />
-                <p:message for="lastName" closable="true"></p:message>  
-                
+                <p:message for="lastName" closable="true"></p:message>
+
+                <p:outputLabel value="E-mail " for="email" />
+                <p:inputText id="email" required="true"  validatorMessage="Invalid email format"
+                    value="#{registration.primeUser.email}">
+                    <f:validateRegex
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </p:inputText>
+                <p:message for="email" />
+
                 <p:outputLabel value="Date of birth " for="dateOfBirth" />
                 <p:datePicker id="dateOfBirth" value="#{registration.primeUser.dateOfBirth}" />
-                
+
                 <br />
-                <p:commandButton id="submit" value="Save" action="#{registration.savePrimeUser}" update="grid" />
+                <p:commandButton id="submit" value="Register" action="#{registration.savePrimeUser}" update="grid" />
             </h:panelGrid>
+
         </h:form>
     </div>
 </h:body>

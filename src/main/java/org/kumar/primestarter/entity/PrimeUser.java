@@ -27,10 +27,13 @@ public class PrimeUser {
     @Column(nullable = false, unique = true)
     private String lastName;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     private LocalDate dateOfBirth;
 
     @Column(nullable = false)
-    private String role;
+    private String role = "USER";
 
     public Long getId() {
         return id;
@@ -70,6 +73,14 @@ public class PrimeUser {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getDateOfBirth() {
