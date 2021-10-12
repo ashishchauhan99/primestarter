@@ -2,13 +2,14 @@ package org.kumar.primestarter.views;
 
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.context.annotation.SessionScope;
+
 @Named
-@RequestScoped
+@SessionScope
 public class HelloWorld {
 
     private String firstName = "John";
