@@ -8,6 +8,7 @@ import javax.inject.Named;
 import org.kumar.primestarter.entity.PrimeUser;
 import org.kumar.primestarter.misc.Utility;
 import org.kumar.primestarter.repository.PrimeUserRepository;
+import org.kumar.primestarter.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
@@ -18,6 +19,8 @@ public class Registration {
     private PrimeUserRepository primeUserRepository;
     @Autowired
     private Utility utility;
+    @Autowired
+    private ProductRepository productRepository;
 
     private PrimeUser primeUser = new PrimeUser();
     private String password;
@@ -67,6 +70,8 @@ public class Registration {
     }
 
     public void savePrimeUser() {
+        productRepository.findAll();
+
         PrimeUser primeUserByUsername = primeUserRepository.findByUsername(primeUser.getUsername());
         if (primeUserByUsername != null) {
             FacesContext.getCurrentInstance().addMessage("registrationForm:username", new FacesMessage(

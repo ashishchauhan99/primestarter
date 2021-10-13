@@ -12,5 +12,22 @@
 <h:body>
     <ui:include src="/templates/header.xhtml" />
     <h2>Product List</h2>
+
+    <div class="card">
+        <p:dataTable var="product" value="#{productListView.lazyProductsDataModel}" paginator="true" rows="10"
+            paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+            rowsPerPageTemplate="5,10,15" selectionMode="single" lazy="true" id="productTable">
+            
+            <p:column headerText="Id" sortBy="#{product.id}" filterBy="#{product.id}">
+                <h:outputText value="#{product.id}" />
+            </p:column>
+            
+            <p:column headerText="Name" sortBy="#{product.productName}" filterBy="#{product.productName}">
+                <h:outputText value="#{product.productName}" />
+            </p:column>
+            
+        </p:dataTable>
+    </div>
+
 </h:body>
 </html>

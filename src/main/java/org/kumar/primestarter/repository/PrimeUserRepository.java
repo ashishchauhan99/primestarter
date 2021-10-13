@@ -7,4 +7,7 @@ public interface PrimeUserRepository extends CrudRepository<PrimeUser, Integer> 
 
     PrimeUser findByUsername(String username);
 
+//    @Query("select u from User u where u.emailAddress = ?1")
+//    PrimeUser findByEmailAddress(String emailAddress);
+
 }
