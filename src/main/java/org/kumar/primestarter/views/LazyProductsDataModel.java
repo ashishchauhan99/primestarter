@@ -1,6 +1,5 @@
 package org.kumar.primestarter.views;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +21,15 @@ public class LazyProductsDataModel extends LazyDataModel<Product> {
     }
 
     @Override
+    public Product getRowData(String rowKey) {
+        Long id = Long.parseLong(rowKey);
+        return productRepository.findById(id).orElse(null);
+
+    }
+
+    @Override
     public List<Product> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-        List<Product> products = new ArrayList<>();
-        productRepository.findAll().forEach(products::add);
-        return products;
+        return productRepository.findProductsWithPaginationFilteringAndSorting(first, pageSize, sortBy, filterBy);
     }
 
     @Override

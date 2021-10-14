@@ -9,7 +9,7 @@ import org.primefaces.model.SortMeta;
 
 public interface ProductRepositoryCustom {
 
-    List<Product> getProductsWithPaginationFilteringAndSorting(int first, int pageSize, Map<String, SortMeta> sortBy,
+    List<Product> findProductsWithPaginationFilteringAndSorting(int first, int pageSize, Map<String, SortMeta> sortBy,
             Map<String, FilterMeta> filterBy);
 
 }

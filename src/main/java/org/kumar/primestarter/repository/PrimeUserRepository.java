@@ -3,7 +3,7 @@ package org.kumar.primestarter.repository;
 import org.kumar.primestarter.entity.PrimeUser;
 import org.springframework.data.repository.CrudRepository;
 
-public interface PrimeUserRepository extends CrudRepository<PrimeUser, Integer> {
+public interface PrimeUserRepository extends CrudRepository<PrimeUser, Long> {
 
     PrimeUser findByUsername(String username);
 
