@@ -34,7 +34,7 @@ The page where you are redirected must include:
 1. Navigation can be done in two ways 
 
 i) From frontend:
-<p:link: this generates and <a> elemnt and parmeters can be send as query parametres (after question mark)
+<p:link: this generates and  ``<a>`` elemnt and parmeters can be send as query parametres (after question mark)
                     <p:link outcome="/products/product.xhtml">
                          <f:param  name="productId" value="10"/>
                     </p:link>                    
