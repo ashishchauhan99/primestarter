@@ -7,6 +7,9 @@
 
 <h:head>
     <title>Product List</title>
+    <f:metadata>
+        <f:viewParam name="productId" value="#{productListView.id}" />
+    </f:metadata>
 </h:head>
 
 <h:body>
@@ -19,18 +22,26 @@
                 paginatorTemplate="{totalRecords} {RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                 rowsPerPageTemplate="5,10,15" selectionMode="single" lazy="true" id="productTable">
 
-                <p:column headerText="Id" sortBy="#{product.id}" filterBy="#{product.id}" >
+                <p:column>
+                    <p:commandButton  icon="pi pi-pencil" styleClass="edit-button rounded-button ui-button-success"
+                        action="#{productListView.redirectToProductView(product)}">
+                    </p:commandButton>
+                    <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash">
+                    </p:commandButton>
+                </p:column>
+
+                <p:column headerText="Id" sortBy="#{product.id}" filterBy="#{product.id}">
                     <h:outputText value="#{product.id}" />
                 </p:column>
 
                 <p:column headerText="Name" sortBy="#{product.productName}" filterBy="#{product.productName}">
                     <h:outputText value="#{product.productName}" />
                 </p:column>
-                
+
                 <p:column headerText="Price" sortBy="#{product.listPrice}" filterBy="#{product.listPrice}">
-                    <h:outputText value="#{product.listPrice} €"  />
+                    <h:outputText value="#{product.listPrice} €" />
                 </p:column>
-                
+
             </p:dataTable>
         </h:form>
     </div>

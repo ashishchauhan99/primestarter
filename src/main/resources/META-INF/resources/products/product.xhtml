@@ -7,10 +7,15 @@
 
 <h:head>
     <title>Product List</title>
+    <f:metadata>
+        <f:viewParam name="productId" value="#{productView.id}" />
+         <f:event type="preRenderView" listener="#{productView.init}"/>
+    </f:metadata>
 </h:head>
 
 <h:body>
     <ui:include src="/templates/header.xhtml" />
     <h2>Create Product</h2>
+    <h:outputText value="#{productView.product.productName}" />
 </h:body>
 </html>
