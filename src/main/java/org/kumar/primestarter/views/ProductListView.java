@@ -3,6 +3,8 @@ package org.kumar.primestarter.views;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,6 +21,8 @@ public class ProductListView {
     private LazyProductsDataModel lazyProductsDataModel;
 
     private Long id;
+
+    private Product selectedProduct;
 
     @PostConstruct
     private void init() {
@@ -37,10 +41,23 @@ public class ProductListView {
         this.id = id;
     }
 
+    public Product getSelectedProduct() {
+        return selectedProduct;
+    }
+
+    public void setSelectedProduct(Product selectedProduct) {
+        this.selectedProduct = selectedProduct;
+    }
+
     public String redirectToProductView(Product product) throws IOException {
         setId(product.getId());
         return "/products/product.xhtml?faces-redirect=true&includeViewParams=true";
 //        FacesContext.getCurrentInstance().getExternalContext().redirect("/products/product.xhtml");
+    }
+
+    public void deleteProduct() {
+        productRepository.delete(selectedProduct);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("deleted successfully"));
     }
 
 }

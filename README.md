@@ -87,5 +87,6 @@ When we use f:action then we do not have to use FacesContext.getCurrentInstance(
     }
 
 
- 
-                    
+# @ViewScoped 
+Note that a @ViewScoped bean does not share any data among different browser tabs/windows in the same session like as a @SessionScoped bean. Every view has its own unique @ViewScoped bean.                  
+A view scoped bean lives as long as you interact with the same view (i.e. you return void or null in bean action method). When you navigate away to another view, e.g. by clicking a link or by returning a different action outcome, then the view scoped bean will be trashed by end of render response and not be available in the next request.  
