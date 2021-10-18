@@ -4,6 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import org.kumar.primestarter.entity.PrimeUser;
 import org.kumar.primestarter.misc.Utility;
@@ -69,9 +70,8 @@ public class Registration {
         }
     }
 
+    @Transactional
     public void savePrimeUser() {
-        productRepository.findAll();
-
         PrimeUser primeUserByUsername = primeUserRepository.findByUsername(primeUser.getUsername());
         if (primeUserByUsername != null) {
             FacesContext.getCurrentInstance().addMessage("registrationForm:username", new FacesMessage(

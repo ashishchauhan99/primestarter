@@ -9,13 +9,41 @@
     <title>Product List</title>
     <f:metadata>
         <f:viewParam name="productId" value="#{productView.id}" />
-         <f:event type="preRenderView" listener="#{productView.init}"/>
+        <f:viewAction action="#{productView.init}" />
     </f:metadata>
 </h:head>
 
 <h:body>
     <ui:include src="/templates/header.xhtml" />
-    <h2>Create Product</h2>
-    <h:outputText value="#{productView.product.productName}" />
+    <h2>#{productView.product.id eq null ? 'Create Product': 'Product:'+= productView.product.id}</h2>
+    <h:form>
+        <p:messages id="messages" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
+        <h:panelGrid id="grid" columns="3" cellpadding="7">
+            <p:outputLabel value="Name: " for="productName" />
+            <p:inputText id="productName" value="#{productView.product.productName}" required="true" />
+            <p:message for="productName" closable="true"></p:message>
+
+            <p:outputLabel value="Model Year: " for="modelYear" />
+            <p:inputText id="modelYear" value="#{productView.product.modelYear}" required="true" />
+            <p:message for="modelYear" closable="true"></p:message>
+
+            <p:outputLabel value="Price: " for="listPrice" />
+            <p:inputText id="listPrice" value="#{productView.product.listPrice}" required="true" />
+            <p:outputLabel value="€" />
+            <p:message for="listPrice" closable="true"></p:message>
+
+
+            <br />
+        </h:panelGrid>
+        <h:panelGrid id="gridSaveCancel" columns="3" cellpadding="3">
+            <p:commandButton id="submit" value="Save" action="#{productView.save}" styleClass="ui-button-success"
+                update="grid" />
+            <p:commandButton id="cancel" value="Cancel" action="/products/productList.xhtml"
+                styleClass="ui-button-danger" immediate="true"/>
+        </h:panelGrid>
+    </h:form>
 </h:body>
 </html>

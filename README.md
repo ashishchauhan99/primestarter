@@ -48,10 +48,14 @@ i) From frontend:
 
 ii) From backend: Navigation can also be done through the backing beans
 
-    public String redirectToProductView(Product product) throws IOException {
-        setId(product.getId());
-        return "/products/product.xhtml?faces-redirect=true&includeViewParams=true";
-       // FacesContext.getCurrentInstance().getExternalContext().redirect("/products/product.xhtml");
+    public void init() {
+        if (!FacesContext.getCurrentInstance().isPostback()) {
+            if (getId() != null) {
+                product = productRepository.findById(getId()).orElse(null);
+            } else {
+                product = new Product();
+            }
+        }
     }
     
 When we use backend navigation then its important to use faces-redirect=true otherwise it just forward the request. It is also important to use includeViewParams=true otherweis no query parameter will be added.
@@ -59,5 +63,29 @@ When we use backend navigation then its important to use faces-redirect=true oth
 NOTE: use <p:link if you do not need any kind of inbuild primefaces css styling, because there are no style class available for p:link and vice versa for <p:commandButton. With <p:commandButton its always a good idea to use backend navigation as we are using in this project.
 
 
+# <f:event type="preRenderView" listener="#{productView.init}"/> vs    <f:viewAction action="#{productView.init}" />
+When we use f:event then its import to use if (!FacesContext.getCurrentInstance().isPostback()) at the init method because at ever postback the init method is invoked and there will no request parameters. 
 
+    public void init() {
+        if (!FacesContext.getCurrentInstance().isPostback()) {
+            if (getId() != null) {
+                product = productRepository.findById(getId()).orElse(null);
+            } else {
+                product = new Product();
+            }
+        }
+    }
+    
+When we use f:action then we do not have to use FacesContext.getCurrentInstance().isPostback() becuase under the hood this check is already implmented by jsf and init method will not be invoked at postback.
+
+    public void init() {
+            if (getId() != null) {
+                product = productRepository.findById(getId()).orElse(null);
+            } else {
+                product = new Product();
+            }
+    }
+
+
+ 
                     

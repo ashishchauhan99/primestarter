@@ -1,5 +1,9 @@
 package org.kumar.primestarter.views;
 
+import java.io.Serializable;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -9,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @ViewScoped
-public class ProductView {
+public class ProductView implements Serializable {
 
     @Autowired
     private ProductRepository productRepository;
@@ -20,6 +24,8 @@ public class ProductView {
     public void init() {
         if (getId() != null) {
             product = productRepository.findById(getId()).orElse(null);
+        } else {
+            product = new Product();
         }
     }
 
@@ -37,6 +43,11 @@ public class ProductView {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public void save() {
+        productRepository.save(product);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("product saved successfully"));
     }
 
 }
