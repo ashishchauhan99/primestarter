@@ -1,12 +1,23 @@
 # To dos
 Why view need to be Serializable
-JSF life cycle
 Converter and Vaidator
 Create your own compoment
 HttpSession -> HttpSessionCretaeListner
 HttpSession vs SpringSession
 Scaling
 
+# JSF life cycle
+For every JSF requst a view is create which is a compoment tree. This view can be accessed in the backing bean
+by FacesContext.getCurrentInstance().getViewRoot();
+
+Phase 1: Restore view
+Phase 2: Apply request values
+Phase 3: Process validation
+Phase 4: Update model values
+Phase 5: Invoke application
+Phase 6: Render response
+
+explaination: https://www.tutorialspoint.com/jsf/jsf_life_cycle.htm
 
 # Mult column sorting in dataTable
 Multiple sorting is enabled by default. In this mode, clicking a sort column while metakey is on adds sort column to the order group. Change attribute sortMode to single to allow only one column
