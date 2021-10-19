@@ -1,4 +1,5 @@
 # To dos
+Why view need to be Serializable
 JSF life cycle
 Converter and Vaidator
 Create your own compoment
