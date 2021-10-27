@@ -42,8 +42,22 @@
             <p:commandButton id="submit" value="Save" action="#{productView.save}" styleClass="ui-button-success"
                 update="grid" />
             <p:commandButton id="cancel" value="Cancel" action="/products/productList.xhtml"
-                styleClass="ui-button-danger" immediate="true"/>
+                styleClass="ui-button-danger" immediate="true" />
         </h:panelGrid>
+
+        <p:ajaxExceptionHandler type="java.lang.NullPointerException" update="exceptionDialog"
+            onexception="PF('exceptionDialog').show()" />
+
+        <p:dialog id="exceptionDialog" header="Exception '#{pfExceptionHandler.type}' occured!"
+            widgetVar="exceptionDialog" height="500px">
+            Message: #{pfExceptionHandler.message} <br />
+            StackTrace: <h:outputText value="#{pfExceptionHandler.formattedStackTrace}" escape="false" />
+            <br />
+
+            <p:button onclick="document.location.href = document.location.href;" value="Reload!"
+                rendered="#{pfExceptionHandler.type == 'java.lang.NullPointerException'}" />
+        </p:dialog>
+
     </h:form>
 </h:body>
 </html>

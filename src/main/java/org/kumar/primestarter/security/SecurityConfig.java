@@ -16,10 +16,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsServiceImpl userDetailsServiceImpl;
+    private SecurityHandler securityHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, SecurityHandler securityHandler) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
+        this.securityHandler = securityHandler;
     }
 
     @Override
@@ -27,9 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/javax.faces.resource/**").permitAll()
                 .antMatchers("/registration.xhtml").permitAll().anyRequest().authenticated().and().formLogin()
-                .loginPage("/login.xhtml").permitAll().failureUrl("/login.xhtml?error=true")
-                .defaultSuccessUrl("/dashboard.xhtml", true).and().logout().logoutSuccessUrl("/login.xhtml")
+                .loginPage("/login.xhtml").permitAll().successHandler(securityHandler)
+                .failureUrl("/login.xhtml?error=true").and().logout().logoutSuccessUrl("/login.xhtml")
                 .deleteCookies("JSESSIONID");
+//        defaultSuccessUrl("/dashboard.xhtml", true)
 
     }
 

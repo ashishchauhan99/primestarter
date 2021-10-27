@@ -27,6 +27,7 @@ public class ProductListView {
     @PostConstruct
     private void init() {
         lazyProductsDataModel = new LazyProductsDataModel(productRepository);
+
     }
 
     public LazyProductsDataModel getLazyProductsDataModel() {

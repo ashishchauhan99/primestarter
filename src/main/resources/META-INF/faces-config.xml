@@ -5,11 +5,12 @@
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
     <application>
+    <view-handler> org.kumar.primestarter.views.LocaleViewHandler</view-handler>
         <locale-config>
             <default-locale>en</default-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>com.mkyong.welcome</base-name>
+            <base-name>org.kumar.primestarter.messages.messages</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>

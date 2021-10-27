@@ -1,7 +1,9 @@
 package org.kumar.primestarter.views;
 
 import java.io.Serializable;
+import java.util.Locale;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -20,6 +22,13 @@ public class ProductView implements Serializable {
 
     private Long id;
     private Product product;
+
+    @PostConstruct
+    public void check() {
+        Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+
+        System.out.println("-------------" + locale.getCountry());
+    }
 
     public void init() {
         if (getId() != null) {

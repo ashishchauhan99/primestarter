@@ -1,34 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html  xml:lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
-  <title>Login</title>
-  <h:outputStylesheet name="/css/main.css" />
+    <title>Login</title>
+    <h:outputStylesheet name="/css/main.css" />
+
 </h:head>
 
 <h:body>
-  <h:form prependId="false">
+    <h:form prependId="false">
 
-    <p:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
-      <h2>Please login</h2>
+        <p:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
+            <h2>Please login</h2>
+            <!--             <p:outputLabel value="#{loginView.lang}" /> -->
 
-      <p:outputLabel value="Login failed!" styleClass="red"
-        rendered="${!empty param['error']}" />
 
-      <p:inputText id="username" placeholder="User name" />
-      <p:password id="password" placeholder="Password" />
+            <p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}" />
 
-      <p:commandButton value="Login" ajax="false" />
-      
-      <p:link outcome="registration" value="Register"> </p:link>
-    </p:panelGrid>
+            <p:inputText id="username" placeholder="User name" />
+            <p:password id="password" placeholder="Password" />
+            
+<!--  <p:selectOneMenu id="options" value="#{localSelector.language}" widgetVar="test" onchange="myTestFunction()"> -->
+ 
+            <p:selectOneMenu id="options" value="#{localSelector.language}" required="true">
+                <f:selectItem itemLabel="Select Language" itemValue="" />
+                <f:selectItem itemLabel="Germany" itemValue="de_DE" />
+                <f:selectItem itemLabel="English Great Brtain" itemValue="en_GR" />
+                <f:selectItem itemLabel="English US" itemValue="en_US" />
+            </p:selectOneMenu>
 
-  </h:form>
+            <p:commandButton value="Login" ajax="false" />
+
+            <!--             <button id="testButton">Click me</button> -->
+
+            <!--             <button id="testButton" onclick="myTestFunction()">Click me</button> -->
+
+            <p:link outcome="registration" value="Register" />
+
+        </p:panelGrid>
+    </h:form>
+
+    <script type="text/javascript">
+                    $(document).ready(function() {
+
+                        $("#testButton--").click(function() {
+                            var selectedValue = PF('test').getSelectedValue();
+                            alert('ffffffffff');
+                        });
+
+                    });
+
+                    function myTestFunction() {
+                        var selectedValue = PF('test').getSelectedValue();
+                        var newUrl = updateQueryStringParameter(window.location.href, 'lang', selectedValue);
+                        console.log('3 ' + newUrl);
+                        console.log('ddd ' + selectedValue);
+
+                    }
+                    function updateQueryStringParameter(uri, key, value) {
+                        var re = new RegExp("([?&amp;])" + key + "=.*?(&amp;|$)", "i");
+                        var separator = uri.indexOf('?') !== -1 ? "&amp;" : "?";
+                        if (uri.match(re)) {
+                            var replaced = uri.replace(re, '$1' + key + "=" + value + '$2');
+                            console.log('1 ' + replaced);
+                            return replaced;
+                        } else {
+                            var originalUrl = uri + separator + key + "=" + value;
+                            console.log('2 ' + originalUrl);
+                            return originalUrl;
+                        }
+                    }
+                </script>
 </h:body>
+
 </html>
