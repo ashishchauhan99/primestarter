@@ -18,7 +18,6 @@ public class PrimeUser {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
     private String password;
 
     @Column(nullable = false, unique = true)

@@ -16,10 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsServiceImpl userDetailsServiceImpl;
-    private SecurityHandler securityHandler;
+    private LoginSucessHandler securityHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, SecurityHandler securityHandler) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, LoginSucessHandler securityHandler) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
         this.securityHandler = securityHandler;
     }

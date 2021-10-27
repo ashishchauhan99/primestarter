@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.kumar.primestarter.service.SessionKey;
 import org.kumar.primestarter.service.SessionStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +19,7 @@ public class DashboardView {
 
     @PostConstruct
     void init() {
-        System.out.println(sessionMap.getSessionAttribute("locale"));
+        System.out.println(sessionMap.getSessionAttribute(SessionKey.LOCALE));
     }
 
     public String getHeading() {

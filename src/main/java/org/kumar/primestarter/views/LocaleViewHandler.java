@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.kumar.primestarter.service.SessionKey;
 import org.kumar.primestarter.service.SessionStoreService;
 import org.kumar.primestarter.service.SpringContextService;
 
@@ -19,7 +20,7 @@ public class LocaleViewHandler extends MultiViewHandler {
         SessionStoreService sessionMap = SpringContextService.getBean(SessionStoreService.class);
         if (session != null && sessionMap != null) {
             // Return the locale saved by the managed bean earlier
-            Object localeObject = sessionMap.getSessionAttribute("locale");
+            Object localeObject = sessionMap.getSessionAttribute(SessionKey.LOCALE);
             if (localeObject != null) {
                 Locale locale = (Locale) localeObject;
                 return locale;

@@ -10,17 +10,17 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class SessionStoreService {
 
-    private Map<String, Object> map = new HashMap<>();
+    private Map<SessionKey, Object> map = new HashMap<>();
 
-    public Object getSessionAttribute(String key) {
+    public Object getSessionAttribute(SessionKey key) {
         return map.get(key);
     }
 
-    public Object setSessionAttribute(String key, Object attribute) {
+    public Object setSessionAttribute(SessionKey key, Object attribute) {
         return map.put(key, attribute);
     }
 
-    public Object removeAttribute(String key) {
+    public Object removeAttribute(SessionKey key) {
         return map.remove(key);
     }
 

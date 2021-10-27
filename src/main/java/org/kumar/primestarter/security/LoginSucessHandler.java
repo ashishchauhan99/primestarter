@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.kumar.primestarter.service.SessionKey;
 import org.kumar.primestarter.service.SessionStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,12 +15,12 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.stereotype.Component;
 
 @Component
-public class SecurityHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     private SessionStoreService sessionMap;
 
     @Autowired
-    public SecurityHandler(SessionStoreService sessionMap) {
+    public LoginSucessHandler(SessionStoreService sessionMap) {
         this.sessionMap = sessionMap;
     }
 
@@ -34,7 +35,7 @@ public class SecurityHandler extends SavedRequestAwareAuthenticationSuccessHandl
             String[] langAndCountry = parameterMap.get("options_input")[0].split("_");
             if (langAndCountry.length == 2) {
                 Locale locale = new Locale(langAndCountry[0], langAndCountry[1]);
-                sessionMap.setSessionAttribute("locale", locale);
+                sessionMap.setSessionAttribute(SessionKey.LOCALE, locale);
             } else {
                 setDefaultLocale();
             }
@@ -55,7 +56,7 @@ public class SecurityHandler extends SavedRequestAwareAuthenticationSuccessHandl
     }
 
     private void setDefaultLocale() {
-        Locale defaultLocale = new Locale("de", "DE");
-        sessionMap.setSessionAttribute("locale", defaultLocale);
+        Locale defaultLocale = new Locale("en", "UK");
+        sessionMap.setSessionAttribute(SessionKey.LOCALE, defaultLocale);
     }
 }
