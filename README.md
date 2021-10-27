@@ -114,6 +114,12 @@ example: https://mkyong.com/jsf2/customize-validation-error-message-in-jsf-2-0/
 The right file is determined based on the Locale of the current request. JSF will pass the one of UIViewRoot#getLocale() to ResourceBundle (this is an api). If the name_ll_CC.properties file is absent, then the ResourceBundle will scan for name_ll.properties file. If it is absent as well, then the ResourceBundle will fallback to the default properties file whose locale you can specify as <default-locale> entry in faces-config.xml. If an entry is absent as well, then it will finally scan for name.properties instead.
 https://stackoverflow.com/questions/4667542/jsf2-internationalization-property-file
 
+## startige for changing Locale in jsf
+1. using  <f:view locale="...">
+2. uses a phase listene
+3. by extending MultiViewHandler (we are using this in the project)
+see here: https://stackoverflow.com/questions/12078520/how-to-change-locale-in-jsf-2-0
+
 
 # Jsf 2.0 generic error handler
 https://stackoverflow.com/questions/18410007/jsf-2-global-exception-handling-navigation-to-error-page-not-happening
