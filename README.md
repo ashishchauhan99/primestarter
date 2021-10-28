@@ -121,5 +121,38 @@ https://stackoverflow.com/questions/4667542/jsf2-internationalization-property-f
 see here: https://stackoverflow.com/questions/12078520/how-to-change-locale-in-jsf-2-0
 
 
+# Creating JSF custom compoment
+
+For createing a jsf compoment we just need this annotation on the top of class
+
+     @FacesComponent(createTag = true, tagName = "helloComponent", namespace = "http://example.com/tags")
+
+Prior to JSF 2.0:
+If you don’t use the @FacesComponent annotation, you must manually create a tag file and register it in the servlet descriptor (web.xml). Here is an example of the tag lib file.
+
+Using the custom compoment:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:t="http://example.com/tags">
+    <h:head></h:head>
+    <h:body>
+        <h2>JSF Custom Component example</h2>
+        <t:helloComponent message="#{helloBean.message}" time="#{helloBean.time}"/>
+    </h:body>
+    </html>
+## Note:
+- JoinFaces only scans jsf types ( @FacesComponent classes) when the project contains faces-config.xml file.
+
+## Some useful exmples:
+- https://github.com/joinfaces/joinfaces/issues/188
+- https://memorynotfound.com/jsf-custom-input-facescomponent-example/
+- https://www.logicbig.com/tutorials/java-ee-tutorial/jsf/custom-component-basic.html
+
+
+
 # Jsf 2.0 generic error handler
 https://stackoverflow.com/questions/18410007/jsf-2-global-exception-handling-navigation-to-error-page-not-happening
