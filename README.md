@@ -1,10 +1,10 @@
 # To dos
-Why view need to be Serializable
-Converter and Vaidator
-Create your own compoment
-HttpSession -> HttpSessionCretaeListner
-HttpSession vs SpringSession
-Scaling
+- Why view need to be Serializable
+- Converter and Vaidator
+- Create your own compoment - done
+- HttpSession -> HttpSessionCretaeListner
+- HttpSession vs SpringSession
+- Scaling
 
 # JSF life cycle
 For every JSF requst a view is create which is a compoment tree. This view can be accessed in the backing bean

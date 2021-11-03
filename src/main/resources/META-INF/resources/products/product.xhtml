@@ -14,8 +14,8 @@
 </h:head>
 
 <h:body>
-    <ui:include src="/templates/header.xhtml" />
-    <h2>#{productView.product.id eq null ? 'Create Product': 'Product:'+= productView.product.id}</h2>
+    <ui:include src="/templates/header.xhtml" /> 
+    <h2>#{productView.product.id eq null ? msg['createProduct']: msg['product'].concat(':').concat(productView.product.id) }</h2>
     <h:form>
         <p:messages id="messages" closable="true">
             <p:autoUpdate />
