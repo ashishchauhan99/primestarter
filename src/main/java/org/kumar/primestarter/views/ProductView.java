@@ -2,6 +2,7 @@ package org.kumar.primestarter.views;
 
 import java.io.Serializable;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -28,6 +29,14 @@ public class ProductView implements Serializable {
         Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
         System.out.println("-------------" + locale.getCountry());
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        for (Map.Entry<String, Object> entry : sessionMap.entrySet()) {
+            System.out.println(entry.getKey() + " ----------- " + entry.getValue());
+
+            if (entry.getKey().equals("com.sun.faces.renderkit.ServerSideStateHelper.LogicalViewMap")) {
+
+            }
+        }
     }
 
     public void init() {

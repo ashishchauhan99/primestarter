@@ -156,3 +156,11 @@ Using the custom compoment:
 
 # Jsf 2.0 generic error handler
 https://stackoverflow.com/questions/18410007/jsf-2-global-exception-handling-navigation-to-error-page-not-happening
+
+# Limiting the number of views per session
+https://stackoverflow.com/questions/10988341/how-to-limit-to-store-the-no-of-views-in-session-for-prime-faces-application
+
+- in a session com.sun.faces.renderkit.ServerSideStateHelper.LogicalViewMap  is the map which actually stores the number of views / session, default is 15. 
+
+# ViewScope beans serialization
+https://stackoverflow.com/questions/36574976/server-state-serialization-in-a-session-in-mojarra
