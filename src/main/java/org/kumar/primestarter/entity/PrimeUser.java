@@ -20,10 +20,8 @@ public class PrimeUser {
 
     private String password;
 
-    @Column(nullable = false, unique = true)
     private String firstName;
 
-    @Column(nullable = false, unique = true)
     private String lastName;
 
     @Column(nullable = false, unique = true)
