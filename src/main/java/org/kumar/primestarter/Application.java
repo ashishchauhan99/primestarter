@@ -1,7 +1,5 @@
 package org.kumar.primestarter;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.slf4j.Logger;
@@ -26,10 +24,10 @@ public class Application {
 //        ApplicationContext context = SpringApplication.run(Application.class);
 //
 //        System.exit(SpringApplication.exit(context));
-        Class.forName("org.h2.Driver");
-
-        Connection conn = DriverManager
-                .getConnection("jdbc:h2:/home/ashish/Development/workspaceEclipse/primestarter/test", "sa", "");
+//        Class.forName("org.h2.Driver");
+//
+//        Connection conn = DriverManager
+//                .getConnection("jdbc:h2:/home/ashish/Development/workspaceEclipse/primestarter/test", "sa", "");
 
         ApplicationContext context = SpringApplication.run(Application.class, args);
 
