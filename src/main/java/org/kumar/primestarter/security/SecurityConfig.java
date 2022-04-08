@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/javax.faces.resource/**").permitAll()
-                .antMatchers("/registration.xhtml").permitAll().anyRequest().authenticated().and().formLogin()
-                .loginPage("/login.xhtml").permitAll().successHandler(securityHandler)
+                .antMatchers("/ping").permitAll().antMatchers("/registration.xhtml").permitAll().anyRequest()
+                .authenticated().and().formLogin().loginPage("/login.xhtml").permitAll().successHandler(securityHandler)
                 .failureUrl("/login.xhtml?error=true").and().logout().logoutSuccessUrl("/login.xhtml")
                 .deleteCookies("JSESSIONID");
 //        defaultSuccessUrl("/dashboard.xhtml", true)
