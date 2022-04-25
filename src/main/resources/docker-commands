@@ -1,0 +1,13 @@
+// run the following command from the directory which has Dockerfile in it
+docker build -t  spring-boot-jsf:0.0.1-SNAPSHOT . 
+
+
+
+docker login
+
+// pushing 
+docker tag spring-boot-jsf:0.0.1-SNAPSHOT general/spring-boot-jsf:0.0.1-SNAPSHOT
+
+//cretae a tag
+docker tag spring-boot-jsf:0.0.1-SNAPSHOT ashishchauhan999/spring-boot-jsf:0.0.1-SNAPSHOT
+docker push ashishchauhan999/spring-boot-jsf:0.0.1-SNAPSHOT 
