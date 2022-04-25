@@ -11,3 +11,11 @@ docker tag spring-boot-jsf:0.0.1-SNAPSHOT general/spring-boot-jsf:0.0.1-SNAPSHOT
 //cretae a tag
 docker tag spring-boot-jsf:0.0.1-SNAPSHOT ashishchauhan999/spring-boot-jsf:0.0.1-SNAPSHOT
 docker push ashishchauhan999/spring-boot-jsf:0.0.1-SNAPSHOT 
+
+
+docker start -p 8080:8080 -v /home/ashish/Documents/logs:/logs
+
+
+
+docker pull ashishchauhan999/spring-boot-jsf:0.0.1-SNAPSHOT
+docker run -p 8080:8080 ashishchauhan999/spring-boot-jsf:0.0.1-SNAPSHOT
